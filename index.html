@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta http-equiv="refresh" content="300">
+
+        <title>বিদ্যালয় পরিদর্শন ছক তৈরি </title>
+
+        <!-- Load external CSS styles -->
+        <link rel="stylesheet" href="styles.css">
+
+    </head>
+
+    <body>
+
+        <div class="container">
+            <div class="input">
+                <span id="inpcreator">
+            <h1 style="text-indent: 5;">ফরম তৈরি করতে নিচের তথ্য দিন</h1><br><hr>
+            শিক্ষার্থীর তথ্য সংখ্যা<input type="number" width="5" id="infnum">
+            শিখন-শেখানো যাচাই সংখ্যা<input type="number" width="10" id="testnum">
+            <input type="submit" id="sub1" onclick="myfunc()"></span><hr>
+            <ol type="1">
+                <li>বিদ্যালয়ের নাম:<input type="text" id="scname"></li>
+                <li>বিদ্যালয়ের ঠিকানা:<input type="text" id="scadd"></li>
+                <li>প্রধান শিক্ষকের নাম:<input type="text" id="hmname"><br>মোবাইল:<input type="number" id="hmnum"></li>
+                <li>তারিখ:<input type="date" id="date"></li>
+                <li>শিক্ষকের তথ্য:<br>&nbsp;সংখ্যা:<input type="number" id="tnum">উপস্থিত:<input type="num" id="ptnum"><br>অনুপস্থিত:<input type="number" id="atnum">অনুপস্থিতির কারণ:<textarea id="tacause"></textarea></li>
+                <li>শিক্ষার্থীর তথ্য:<br>
+                    <span id="stinf"></span>
+                </li>
+                <li>শিখন-শেখানো যাচাই:<br>
+                    <span></span>
+                </li>
+                <li>পাঠ্যমান:<br>
+                    <input type="radio" name="rating" id="rating" value="red">লাল(০০-৬০%)
+                    <input type="radio" name="rating" id="rating" value="yellow">হলুদ(৬১-৭৯%)
+                    <input type="radio" nmae="rating" id="rating" value="green">সবুজ(৮০-১০০%)
+
+                </li>
+                <li>মন্তব্য:<br><textarea id="comment"></textarea></li>
+            </ol>
+            </div>
+            <div class="output" id="output">
+               
+            </div>
+
+
+        </div>
+        
+        <!-- Load external JavaScript -->
+        <script src="scripts.js"></script>
+        
+    
+
+</body></html>
