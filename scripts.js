@@ -11,7 +11,7 @@ for (let i=1; i<=infnum.value; i++){
     var stinfin= document.createElement("input");
     stinf.appendChild(stinfin);
     stinfin.setAttribute('type', 'text');
-    document.getElementById("stinf").innerHTML= ""
+    document.getElementById("stinf").innerHTML+= "";
 }
 document.getElementById("inpcreator").style.visibility = "hidden";
 }
