@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tahmid's form for school inspection, বিদ্যালয় পরিদর্শন ছক, শিক্ষার্থী তথ্য, শিক্ষক তথ্য, শিখন-শেখানো যাচাই, পাঠ্যমান, মন্তব্য, School inspection Form, Student Information, Teacher Information, Learning-Teaching Assessment, Textbook Quality, Comments">
+
+    <!-- NOTE: the old <meta http-equiv="refresh" content="300"> was removed.
+         It reloaded the page every 5 minutes and erased everything typed. -->
+
+    <title>বিদ্যালয় পরিদর্শন ছক</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Toolbar (not printed) -->
+    <div class="toolbar no-print">
+        <button id="printBtn" type="button">🖨️ PDF / প্রিন্ট</button>
+        <button id="clearBtn" type="button" class="secondary">🗑️ নতুন ফরম</button>
+        <span class="hint">প্রিন্ট উইন্ডোতে Destination-এ <b>Save as PDF</b> বেছে নিলে PDF হবে।</span>
+    </div>
+
+    <!-- The form sheet (this is exactly what gets printed) -->
+    <main class="sheet" id="sheet">
+
+        <h1 class="title"><span>বিদ্যালয় পরিদর্শন/তথ্য ছক</span></h1>
+
+        <div class="field"><label for="scname">১। বিদ্যালয়ের নাম:</label><input type="text" id="scname" autocomplete="off"></div>
+        <div class="field"><label for="scadd">২। বিদ্যালয়ের ঠিকানা:</label><input type="text" id="scadd" autocomplete="off"></div>
+        <div class="field">
+            <label for="hmname">৩। প্রধান শিক্ষকের নাম ও মোবাইল নম্বর:</label>
+            <input type="text" id="hmname" autocomplete="off">
+            <input type="text" id="hmnum" class="n short" inputmode="numeric" maxlength="11" placeholder="মোবাইল">
+        </div>
+        <div class="field">
+            <label>৪। বিদ্যালয় পরিদর্শন/তথ্য সংগ্রহের তারিখ:</label>
+            <span class="date">
+                <input type="text" id="dd" class="n tiny" inputmode="numeric" maxlength="2"> /
+                <input type="text" id="mm" class="n tiny" inputmode="numeric" maxlength="2"> /
+                <input type="text" id="yy" class="n small" inputmode="numeric" maxlength="4">
+            </span>
+        </div>
+
+        <!-- 5. Teachers -->
+        <div class="field"><label>৫। বিদ্যালয়ের শিক্ষকের তথ্য:</label></div>
+        <table>
+            <thead>
+                <tr><th>শিক্ষক সংখ্যা</th><th>উপস্থিত শিক্ষক সংখ্যা</th><th>অনুপস্থিত শিক্ষক সংখ্যা</th><th>অনুপস্থিতির কারণ</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" id="tnum" class="n" inputmode="numeric"></td>
+                    <td><input type="text" id="ptnum" class="n" inputmode="numeric"></td>
+                    <td class="calc" id="atnum"></td>
+                    <td><textarea id="tacause" rows="1"></textarea></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 6. Students -->
+        <div class="field gap"><label>৬। বিদ্যালয়ের শিক্ষার্থীদের তথ্য:</label></div>
+        <table>
+            <thead>
+                <tr><th>শ্রেণী</th><th>ভর্তিকৃত<br>শিক্ষার্থীর সংখ্যা</th><th>উপস্থিত<br>শিক্ষার্থীর সংখ্যা</th><th>অনুপস্থিত<br>শিক্ষার্থীর সংখ্যা</th><th>উপস্থিতির<br>হার(%)</th></tr>
+            </thead>
+            <tbody id="studentRows"></tbody>
+            <tfoot>
+                <tr class="total">
+                    <th>মোট</th>
+                    <td class="calc" id="tot_enr"></td>
+                    <td class="calc" id="tot_pre"></td>
+                    <td class="calc" id="tot_abs"></td>
+                    <td class="calc" id="tot_rate"></td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="avg">গড়(%)= <span class="box" id="avg6">০.০০</span></div>
+
+        <!-- 7. Learning-teaching check -->
+        <div class="field gap"><label>৭। শিখন-শেখানো কার্যক্রম যাচাই:</label></div>
+        <table>
+            <thead>
+                <tr><th rowspan="2">শিক্ষকের নাম</th><th rowspan="2">শ্রেণী</th><th rowspan="2">বিষয়</th><th colspan="2">অর্জিত দক্ষতা</th></tr>
+                <tr><th class="sub">যাচাইকৃত<br>শিক্ষার্থী</th><th class="sub">দক্ষতা<br>অর্জনকারী</th></tr>
+            </thead>
+            <tbody id="testRows"></tbody>
+        </table>
+        <div class="avg">গড়(%)= <span class="box" id="avg7">০.০০</span></div>
+
+        <!-- 8. Rating -->
+        <div class="field"><label>৮। বিদ্যালয়ের পাঠ্যমান: (যাচাইকৃত ছাত্র-ছাত্রীর উপর ভিত্তি করে)</label></div>
+        <table class="rating">
+            <thead>
+                <tr><th class="c-red">লাল</th><th class="c-yellow">হলুদ</th><th class="c-green">সবুজ</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-c="red"><label><input type="radio" name="rating" value="red"> ০০-৬০%</label></td>
+                    <td data-c="yellow"><label><input type="radio" name="rating" value="yellow"> ৬১-৭৯%</label></td>
+                    <td data-c="green"><label><input type="radio" name="rating" value="green"> ৮০-১০০%</label></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 9. Comment -->
+        <div class="field gap"><label for="comment">৯। সার্বিক মন্তব্য:</label></div>
+        <textarea id="comment" class="comment" rows="4"></textarea>
+
+        <div class="signature">পরিদর্শনকারী/তথ্য সংগ্রহকারীর নাম, স্বাক্ষর ও তারিখ</div>
+    </main>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

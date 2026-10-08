@@ -13,6 +13,13 @@ for (let i=1; i<=infnum.value; i++){
     stinfin.setAttribute('type', 'text');
     document.getElementById("stinf").innerHTML+= "";
 }
+for (let i=1; i<=testnum.value; i++){
+    var testinf= document.getElementById("testinf");
+    var testinfin= document.createElement("input");
+    testinf.appendChild(testinfin);
+    testinfin.setAttribute('type', 'text');
+    document.getElementById("testinf").innerHTML+= "";
+}
 document.getElementById("inpcreator").style.visibility = "hidden";
 }
 }

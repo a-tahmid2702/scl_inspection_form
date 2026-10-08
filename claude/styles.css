@@ -1,0 +1,157 @@
+/* ---------- Screen ---------- */
+
+* { box-sizing: border-box; }
+
+body {
+    background-color: #47ffb9;
+    margin: 0;
+    padding: 12px;
+    font-family: 'Noto Sans Bengali', 'Kalpurush', 'SolaimanLipi', 'Nirmala UI', 'Vrinda', sans-serif;
+    font-size: 14px;
+    color: #000;
+}
+
+.toolbar {
+    max-width: 210mm;
+    margin: 0 auto 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.toolbar button {
+    font: inherit;
+    font-weight: 600;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background: #0b6b4a;
+    color: #fff;
+    cursor: pointer;
+}
+.toolbar button.secondary { background: #fff; color: #333; border: 1px solid #999; }
+.toolbar button:hover { opacity: .9; }
+.toolbar .hint { font-size: 12px; color: #064d35; }
+
+.sheet {
+    background-color: #fefefe;
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 12mm;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+.title {
+    text-align: center;
+    font-size: 18px;
+    margin: 0 0 14px;
+}
+.title span { text-decoration: underline; }
+
+.field {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 6px 0;
+}
+.field.gap { margin-top: 14px; }
+.field label { font-weight: 600; white-space: nowrap; }
+.field > input[type="text"] { flex: 1 1 140px; min-width: 0; }
+
+.date { display: inline-flex; align-items: baseline; gap: 3px; }
+
+input, textarea {
+    font: inherit;
+    color: #000;
+    background: transparent;
+    border: none;
+    border-bottom: 1px dotted #888;
+    padding: 2px 4px;
+    outline: none;
+}
+input:focus, textarea:focus { background: #eefcf6; border-bottom-color: #0b6b4a; }
+
+input.tiny  { width: 2.4em; text-align: center; }
+input.small { width: 4em;   text-align: center; }
+input.short { flex: 0 1 130px !important; }
+
+textarea { width: 100%; resize: none; overflow: hidden; display: block; }
+textarea.comment { border: 1px dotted #888; min-height: 90px; }
+
+/* ---------- Tables ---------- */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 4px;
+}
+th, td {
+    border: 1px solid #000;
+    padding: 3px 4px;
+    text-align: center;
+    vertical-align: middle;
+}
+th { font-weight: 600; }
+th.sub { font-weight: 400; font-size: 12px; }
+td input { width: 100%; text-align: center; border-bottom: none; }
+td input.l, td.l input { text-align: left; }
+td textarea { border-bottom: none; text-align: center; }
+td.calc { font-weight: 600; background: #f6f6f6; min-width: 3em; }
+tr.total th, tr.total td { background: #f0f0f0; }
+
+.avg { text-align: right; margin-top: 4px; font-weight: 600; }
+.avg .box {
+    display: inline-block;
+    min-width: 5.5em;
+    border: 1px solid #000;
+    padding: 2px 10px;
+    text-align: center;
+}
+
+/* Wrong numbers (e.g. present > enrolled) */
+input.err { background: #ffd6d6 !important; outline: 1px solid #d00; }
+
+/* Rating table */
+table.rating { width: 60%; }
+table.rating td label { cursor: pointer; display: block; }
+table.rating th.c-red    { background: #f8c9c9; }
+table.rating th.c-yellow { background: #fff2a8; }
+table.rating th.c-green  { background: #c6efc6; }
+table.rating td.sel[data-c="red"]    { background: #ef6a6a; font-weight: 700; }
+table.rating td.sel[data-c="yellow"] { background: #ffd93d; font-weight: 700; }
+table.rating td.sel[data-c="green"]  { background: #62c462; font-weight: 700; }
+
+.signature { margin-top: 70px; font-weight: 600; }
+
+/* Phones */
+@media (max-width: 640px) {
+    body { padding: 6px; font-size: 13px; }
+    .sheet { padding: 8px; }
+    .sheet table { font-size: 11px; }
+    table.rating { width: 100%; }
+}
+
+/* ---------- Print / PDF ---------- */
+
+@page { size: A4; margin: 10mm; }
+
+@media print {
+    body { background: #fff; padding: 0; font-size: 12px; }
+    .no-print { display: none !important; }
+    .sheet { box-shadow: none; max-width: none; padding: 0; }
+
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+    input, textarea { border: none !important; background: transparent !important; outline: none !important; }
+    textarea.comment { border: none !important; }
+    input::placeholder, textarea::placeholder { color: transparent; }
+    input.err { background: transparent !important; outline: none !important; }
+
+    table.rating input[type="radio"] { display: none; }
+    table.rating { width: 60%; }
+
+    tr, .field { break-inside: avoid; }
+    .signature { margin-top: 60px; }
+}
